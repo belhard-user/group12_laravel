@@ -1,0 +1,1 @@
+<li><a href="{{ route('hello-page', ['name' => $name, 'lname' => $name]) }}">{{ $name }}</a></li>
