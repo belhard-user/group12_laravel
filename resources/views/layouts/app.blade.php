@@ -21,8 +21,8 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        @include('part.menu')
+    @include('part.menu')
+    <div id="app" class="container">
         @yield('content')
     </div>
 
