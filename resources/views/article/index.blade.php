@@ -10,6 +10,7 @@
                     {{ $article->title }}
                 </a>
             </h2>
+            <p>{{ $article->created_at }}</p>
             <p>{{ $article->short_description }}</p>
         </section>
     @empty
