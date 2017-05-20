@@ -12,3 +12,6 @@ Route::group(['prefix' => 'news'], function($route){
     $route->post('create', 'ArticleController@store');
     $route->get('/{article}', 'ArticleController@show')->name('article.show');
 });
+
+Route::get('validator', 'ValidateController@index');
+Route::post('validator', 'ValidateController@validation');
