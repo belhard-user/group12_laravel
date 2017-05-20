@@ -14,10 +14,9 @@ class ArticleController extends Controller
         return view('article.index', compact('articles'));
     }
 
-    public function show($slug)
+    public function show(Article $article)
     {
-        $article = Article::where('slug', $slug)->first();
-        
+        // $article = Article::where('slug', $slug)->first();
         return view('article.show', compact('article'));
     }
 
@@ -31,5 +30,17 @@ class ArticleController extends Controller
         Article::create($request->except('_token'));
 
         return redirect()->route('article.index');
+    }
+
+    public function update(Article $article, Request $request)
+    {
+        $article->update($request->all());
+
+        return redirect()->route('article.index');
+    }
+
+    public function edit(Article $article)
+    {
+        return view('article.edit', compact('article'));
     }
 }

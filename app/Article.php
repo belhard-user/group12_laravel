@@ -22,4 +22,16 @@ class Article extends Model
     {
         return strtoupper($this->attributes['title']);
     }
+
+    /**
+     * Get news by slug
+     * 
+     * @param $query
+     * @param $slug
+     * @return mixed
+     */
+    public function scopeBySlug($query, $slug)
+    {
+        return $query->where('slug', $slug);
+    }
 }

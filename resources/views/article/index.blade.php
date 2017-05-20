@@ -2,11 +2,13 @@
 
 @section('content')
     <h1>Новости</h1>
+    <hr>
+    <a class="btn btn-info" href="{{ route('article.create') }}">Создать</a>
 
     @forelse($articles as $article)
         <section>
             <h2>
-                <a href="{{ route('article.show', ['slug' => $article->slug]) }}">
+                <a href="{{ route('article.show', ['article' => $article->slug]) }}">
                     {{ $article->title }}
                 </a>
             </h2>

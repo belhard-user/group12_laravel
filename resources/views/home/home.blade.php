@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            <a href="{{ route('article.index') }}" class="btn btn-primary">Читать новости</a>
             @if(count($users))
                 <ul class="list-group">
                     @foreach($users as $user)

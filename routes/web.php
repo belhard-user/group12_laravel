@@ -6,7 +6,9 @@ Route::get('user/{name}-{age}/view', 'HomeController@profile')->name('user.profi
 
 Route::group(['prefix' => 'news'], function($route){
     $route->get('/', 'ArticleController@index')->name('article.index');
-    $route->get('create', 'ArticleController@create');
+    $route->get('create', 'ArticleController@create')->name('article.create');
+    $route->get('{article}/edit', 'ArticleController@edit')->name('article.edit');
+    $route->put('{article}/edit', 'ArticleController@update')->name('article.update');
     $route->post('create', 'ArticleController@store');
-    $route->get('/{slug}', 'ArticleController@show')->name('article.show');
+    $route->get('/{article}', 'ArticleController@show')->name('article.show');
 });
