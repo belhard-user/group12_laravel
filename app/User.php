@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function article()
+    {
+        return $this->hasMany(Article::class);
+    }
+    
+    public function attachNews(Request $request)
+    {
+        return $this->article()->create($request->except('_token'));
+    }
 }

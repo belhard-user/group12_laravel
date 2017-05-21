@@ -28,7 +28,7 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        Article::create($request->except('_token'));
+        \Auth::user()->attachNews($request);
 
         return redirect()->route('article.index');
     }

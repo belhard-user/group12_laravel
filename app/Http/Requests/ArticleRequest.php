@@ -25,18 +25,14 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         $rule =  [
-            'title' => [
-                'required',
-                'max:140',
-                Rule::unique('articles')->ignore($this->article->id),
-            ],
+            'title' => 'required|max:140|unique:articles',
             'short_description' => 'required',
             'body' => 'required'
         ];
 
-        /*if( array_get($this->route()->action, 'as') == 'article.update'){
+        if( array_get($this->route()->action, 'as') == 'article.update'){
             $rule['title'] = 'required|max:140|unique:articles,title,' . $this->article->id;
-        }*/
+        }
 
         return $rule;
     }

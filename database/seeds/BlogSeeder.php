@@ -40,23 +40,7 @@ class BlogSeeder extends Seeder
     private function createArticles(\Faker\Generator $faker)
     {
         $table = $this->getTable('articles');
-        $data = [];
-
-        for($i = 0; $i < 100; $i++){
-            $title = $faker->sentence();
-            $dateTime = $faker->dateTimeBetween();
-
-            $item = [
-                'title' => $title,
-                'slug' => str_slug($title),
-                'short_description' => $faker->text(),
-                'body' => $faker->text(2000),
-                'created_at' => $dateTime,
-                'updated_at' => $dateTime
-            ];
-            array_push($data, $item);
-        }
-        $table->insert($data);
+        factory(\App\Article::class, 100)->create();
     }
 
     /**
