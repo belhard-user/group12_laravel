@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -25,14 +26,14 @@ class ArticleController extends Controller
         return view('article.create');
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         Article::create($request->except('_token'));
 
         return redirect()->route('article.index');
     }
 
-    public function update(Article $article, Request $request)
+    public function update(Article $article, ArticleRequest $request)
     {
         $article->update($request->all());
 
