@@ -5,6 +5,8 @@ Route::get('form', 'RequestController@index');
 Route::post('form', 'RequestController@store')->name('form');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('relations', 'RelationController@index')->name('relation');
+Route::get('relations/user', 'RelationController@user')->name('relation.user');
 Route::get('user/{name}-{age}/view', 'HomeController@profile')->name('user.profile');
 
 Route::group(['prefix' => 'news'], function($route){
