@@ -2,11 +2,18 @@
 
 namespace App\Http\Requests;
 
+use App\Tag;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class ArticleRequest extends FormRequest
 {
+    protected $tag;
+
+    public function __construct(Tag $tag)
+    {
+        $this->tag = $tag;
+    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,7 +34,8 @@ class ArticleRequest extends FormRequest
         $rule =  [
             'title' => 'required|max:140|unique:articles',
             'short_description' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'tag_list.*' => 'required|in:' . $this->tag->pluck('id')->implode(',')
         ];
 
         if( array_get($this->route()->action, 'as') == 'article.update'){

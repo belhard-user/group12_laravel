@@ -34,4 +34,14 @@ class Article extends Model
     {
         return $query->where('slug', $slug);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function getTagListAttribute()
+    {
+        return $this->tags()->pluck('id')->toArray();
+    }
 }

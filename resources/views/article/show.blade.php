@@ -6,4 +6,9 @@
     <p>
         <a href="{{ route('article.edit', ['article' => $article->slug]) }}">Редактировать</a>
     </p>
+    @unless($article->tags->isEmpty())
+        @foreach($article->tags as $tag)
+            <span class="label label-info">{{ $tag->name }}</span>
+        @endforeach
+    @endunless
 @endsection

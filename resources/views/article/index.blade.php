@@ -14,6 +14,11 @@
             </h2>
             <p>{{ $article->created_at }}</p>
             <p>{{ $article->short_description }}</p>
+            <div>
+                @foreach($article->tags as $tag)
+                    <span class="label label-{{ collect(['danger', 'info', 'warning', 'primary', 'default'])->random() }}">{{ $tag->name }}</span>
+                @endforeach
+            </div>
         </section>
     @empty
         <p>Увы</p>

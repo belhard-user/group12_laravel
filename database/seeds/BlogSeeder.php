@@ -1,5 +1,6 @@
 <?php
 
+use App\Article;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
@@ -11,6 +12,8 @@ class BlogSeeder extends Seeder
         'Музыка',
         'Политика',
         'Президент',
+        'Обама',
+        'Природа'
     ];
     /**
      * Run the database seeds.
@@ -28,6 +31,7 @@ class BlogSeeder extends Seeder
     private function createTags(\Faker\Generator $faker)
     {
         $table = $this->getTable('tags');
+        $table->truncate();
 
         foreach(static::$tags as $tag){
             $table->insert([
@@ -39,8 +43,29 @@ class BlogSeeder extends Seeder
 
     private function createArticles(\Faker\Generator $faker)
     {
-        $table = $this->getTable('articles');
-        factory(\App\Article::class, 100)->create();
+        // $table = $this->getTable('articles');
+        $tagList = \App\Tag::pluck('id');
+        Article::truncate();
+
+        for($i = 0; $i < 100; $i++){
+            $title = $faker->sentence();
+            $dateTime = $faker->dateTimeBetween();
+
+            $table = Article::create([
+                'title' => $title,
+                'slug' => str_slug($title),
+                'short_description' => $faker->text(),
+                'body' => $faker->text(2000),
+                'created_at' => $dateTime,
+                'updated_at' => $dateTime,
+                'user_id' => factory(App\User::class)->create()->id
+            ]);
+
+            $table->tags()->attach(
+                $tagList->random( rand(1, $tagList->count()) )
+            );
+        }
+        // factory(\App\Article::class, 100)->create();
     }
 
     /**
