@@ -3,6 +3,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('user/{name}-{age}/view', 'HomeController@profile')->name('user.profile');
+Route::get('file', 'FileController@index');
+Route::post('file', 'FileController@file');
 
 Route::group(['prefix' => 'news'], function($route){
     $route->get('/', 'ArticleController@index')->name('article.index');
