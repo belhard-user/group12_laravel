@@ -1,7 +1,7 @@
 <?php
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home')->middleware('foo');
 Route::get('user/{name}-{age}/view', 'HomeController@profile')->name('user.profile');
 
 Route::group(['prefix' => 'news'], function($route){

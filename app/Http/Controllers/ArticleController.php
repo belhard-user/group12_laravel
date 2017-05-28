@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index']]);
+    }
+
     public function index()
     {
         $articles = Article::with('tags')->latest('updated_at')->paginate(5);
@@ -29,7 +34,6 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $article = \Auth::user()->attachNews($request);
-        // Новость с тэгоми
         $article->tags()->attach($request->get('tag_list'));
 
         return redirect()->route('article.index');
