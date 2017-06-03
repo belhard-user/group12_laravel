@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        /*$locale = ['ru', 'en'];
+
+        \App::setLocale(collect($locale)->random());*/
     }
 
     /**

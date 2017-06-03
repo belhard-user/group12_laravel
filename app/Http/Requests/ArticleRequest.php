@@ -44,4 +44,11 @@ class ArticleRequest extends FormRequest
 
         return $rule;
     }
+
+    /*public function messages()
+    {
+        return [
+            'title.required' => 'Заполни поле Заголовок сынок!'
+        ];
+    }*/
 }
