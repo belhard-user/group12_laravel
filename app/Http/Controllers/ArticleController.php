@@ -37,6 +37,8 @@ class ArticleController extends Controller
         $article = \Auth::user()->attachNews($request);
         // Новость с тэгоми
         $article->tags()->attach($request->get('tag_list'));
+        
+        flash('Новость ' . $article->title . ' создана');
 
         return redirect()->route('article.index');
     }
@@ -49,6 +51,7 @@ class ArticleController extends Controller
         /*$article->tags()->detach($request->get('tag_list'));
         $article->tags()->attach($request->get('tag_list'));*/
 
+        flash('Новость ' . $article->title . ' обновлена');
         return redirect()->route('article.index');
     }
 

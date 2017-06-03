@@ -23,6 +23,7 @@
 <body>
     @include('part.menu')
     <div id="app" class="container">
+        @include('part.flash')
         @yield('content')
     </div>
 
