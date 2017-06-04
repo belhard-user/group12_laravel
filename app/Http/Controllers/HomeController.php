@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function __construct(\Car $car)
+    {
+        // dump($car); die;
+    }
     public function index()
     {
         $users = [
@@ -15,6 +19,17 @@ class HomeController extends Controller
         ];
         
         return view('home.home', compact('users'));
+    }
+
+    public function someMethod()
+    {
+        $o1 = app('car');
+        $o2 = app('car');
+        $o3 = app(\Car::class);
+
+        dump($o1, $o2, $o3);
+
+        echo \Carsus::foo();
     }
 
     public function profile($name, $age)
