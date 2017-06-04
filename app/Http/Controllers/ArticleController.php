@@ -34,9 +34,12 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
+        event(new \App\Article\After($request));
+
         $article = \Auth::user()->attachNews($request);
         // Новость с тэгоми
         $article->tags()->attach($request->get('tag_list'));
+        event(new \App\Article\Before());
         
         flash('Новость ' . $article->title . ' создана');
 
